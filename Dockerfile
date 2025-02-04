@@ -2,25 +2,22 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
-    git \
+    software-properties-common \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first for better caching
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-RUN mkdir -p /app/model /app/indexes_with_overlap_100_chunks_500
+# Copy application code
+COPY . .
 
-COPY ./model1/* /app/model/
-COPY ./indexes_with_overlap_100_chunks_500/* /app/indexes_with_overlap_100_chunks_500/
-COPY main.py .
-COPY init_elasticsearch.sh .
-COPY fifa_laws_mapping.json .
-COPY fifa_laws_data.json .
+# Expose Streamlit port
+EXPOSE 8501
 
-RUN chmod +x /app/init_elasticsearch.sh
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run the Streamlit application
+CMD ["streamlit", "run", "chatbot.py", "--server.port=8501", "--server.address=0.0.0.0"]
