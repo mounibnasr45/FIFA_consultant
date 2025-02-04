@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "fifa_laws", "_id" : "1" } }
+{ "title" : "Law 1", "content" : "The Field of Play" }
+{ "index" : { "_index" : "fifa_laws", "_id" : "2" } }
+{ "title" : "Law 2", "content" : "The Ball" }

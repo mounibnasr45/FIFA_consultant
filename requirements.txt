@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+elasticsearch
+sentence-transformers
+faiss-cpu
+transformers
+torch
+requests
+pydantic
+scikit-learn
