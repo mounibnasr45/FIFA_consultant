@@ -1,4 +1,5 @@
 # RAG Application
+![Uploading Screenshot_10-2-2025_19137_localhost.jpeg…]()
 
 This project implements a Retrieval-Augmented Generation (RAG) application using FastAPI. The application retrieves information from Elasticsearch and FAISS, and generates responses using a language model.
 
